@@ -1,5 +1,6 @@
 import customtkinter as ctk
 from controllers.controle import validar_e_salvar
+from models.modelo import listar_produtos
 
 def verificar_produto():
     produto_digitado = produto.get()
@@ -12,6 +13,19 @@ def verificar_produto():
             lbl_aviso.configure(text="Produto cadastrado!", text_color="green") 
         else:
             lbl_aviso.configure(text="")
+
+
+def listar_produto():
+    global janela_produtos 
+    janela_produtos = ctk.CTkToplevel(janela)
+    janela_produtos.title("Estoque")
+    janela_produtos.geometry("300x200")
+
+    janela_produtos = ctk.CTkLabel(janela, text="Produtos em estoque", text_color="white")
+
+
+
+
 
 def iniciar_janela_principal():
     global janela, produto, quantidade, lbl_aviso
@@ -29,7 +43,6 @@ def iniciar_janela_principal():
     quantidade = ctk.CTkEntry(janela, placeholder_text="Digite o nome do produto...")
     quantidade.pack(pady=20)
 
-
     lbl_aviso = ctk.CTkLabel(janela, text= "")
     lbl_aviso.pack(pady=10)
 
@@ -39,5 +52,12 @@ def iniciar_janela_principal():
         command=verificar_produto
     )
     btn_salvar.pack(pady=20)
+
+    estoque = ctk.CTkTextbox(
+        janela_produtos,
+        width=350,
+        height=150
+    )
+    estoque.pack(pady=10)
 
     janela.mainloop()
