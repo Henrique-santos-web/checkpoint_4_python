@@ -1,12 +1,27 @@
-from models.modelo import inserir_produto
+from models.modelo import inserir_nome_produto, buscar_nome_produto, atualizar_preco, deletar_produto
 
-def validar_e_salvar(produto, quantidade, preco):
-    if produto == "" and quantidade >= 0:
-        print("Erro: Verifique se os campos foram preenchidos corretamente")
-        return False
-    elif preco <= 0.0:
-        print("Erro: O preço deve estar acima de R$1,00")
-        return False
+
+def validar_e_salvar(produto, quantidade_txt, preco_txt):
+    if produto == "" or preco_txt == "":
+        return False, "Campos vazios!"
     
-    inserir_produto(produto, quantidade)
+    try:
+        preco = float(preco_txt)
+        quantidade = int(quantidade_txt)
+    except ValueError:
+        return False, "Erro nos números!"
+    
+    inserir_nome_produto(produto, preco, quantidade)
     return True
+
+
+def validar_busca_produto():
+    pass
+
+
+def validar_preco():
+    pass
+
+
+def validar_delete():
+    pass
