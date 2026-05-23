@@ -2,8 +2,7 @@ import customtkinter as ctk
 import matplotlib.pyplot as plt
 
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from controllers.controle import validar_e_salvar
-from models.modelo import buscar_produto
+from controllers.controle import inserir_produtos
 
 def verificar_produto():
     produto_digitado = produto.get()
@@ -12,7 +11,7 @@ def verificar_produto():
     if produto_digitado == "" or quantidade_digitada == "":
         lbl_aviso.configure(text="Este campo não pode estar vazio", text_color="red")
         
-        if validar_e_salvar(produto_digitado, quantidade_digitada):
+        if inserir_produtos(produto_digitado, quantidade_digitada):
             lbl_aviso.configure(text="Produto cadastrado!", text_color="green") 
         else:
             lbl_aviso.configure(text="")
@@ -42,7 +41,7 @@ def buscar_produto(visualizar_estoque):
 
 
 def iniciar_janela_principal():
-    global janela, produto, quantidade, lbl_aviso
+    global janela, produto, preco_txt, quantidade, lbl_aviso
 
     janela = ctk.CTk()
     janela.title("Gestor de produtos")
@@ -52,6 +51,9 @@ def iniciar_janela_principal():
     lbl_titilo.pack(pady=20)
 
     produto = ctk.CTkEntry(janela, placeholder_text="Digite o nome do produto...")
+    produto.pack(pady=20)
+
+    preco_txt = ctk.CTkEntry(janela, placeholder_text="Digite o valor do produto...")
     produto.pack(pady=20)
 
     quantidade = ctk.CTkEntry(janela, placeholder_text="Digite o nome do produto...")
@@ -72,5 +74,7 @@ def iniciar_janela_principal():
         height=150
     )
     visualizar_estoque.pack(pady=10)
+
+
 
     janela.mainloop()
