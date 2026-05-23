@@ -1,6 +1,9 @@
 import customtkinter as ctk
+import matplotlib.pyplot as plt
+
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from controllers.controle import validar_e_salvar
-from models.modelo import listar_produtos
+from models.modelo import buscar_produto
 
 def verificar_produto():
     produto_digitado = produto.get()
@@ -15,16 +18,27 @@ def verificar_produto():
             lbl_aviso.configure(text="")
 
 
-def listar_produto():
-    global janela_produtos 
+def buscar_produto(visualizar_estoque):
+    janela_produtos
     janela_produtos = ctk.CTkToplevel(janela)
     janela_produtos.title("Estoque")
-    janela_produtos.geometry("300x200")
+    janela_produtos.geometry("600x400")
 
     janela_produtos = ctk.CTkLabel(janela, text="Produtos em estoque", text_color="white")
+    visualizar_estoque.delete("0.0", "end")
 
+    nome_produto, quantidade_produto = [], []
 
+    produtos = buscar_produto()
 
+    for produto in produtos:
+        nome_produto.append(produto[1])
+        quantidade_produto.append(produto[2])     
+        estoque = f"Produto: {nome_produto} | Quantidade: {quantidade_produto}"
+
+        figura, ax = plt.subplots(figsize=(5, 4)) 
+
+        visualizar_estoque.insert("end", estoque)
 
 
 def iniciar_janela_principal():
@@ -53,11 +67,10 @@ def iniciar_janela_principal():
     )
     btn_salvar.pack(pady=20)
 
-    estoque = ctk.CTkTextbox(
-        janela_produtos,
+    visualizar_estoque = ctk.CTkTextbox(
         width=350,
         height=150
     )
-    estoque.pack(pady=10)
+    visualizar_estoque.pack(pady=10)
 
     janela.mainloop()

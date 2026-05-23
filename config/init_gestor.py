@@ -11,13 +11,11 @@ def criar_tabela():
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS produtos(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    produto TEXT NOT NULL,
-                    quantidade TEXT NOT NULL          
+                    nome_produto TEXT NOT NULL,
+                    preco TEXT NOT NULL,
+                    quantidade TEXT NOT NULL         
                 )
             """)
 
     except sqlite3.Error as erro:
         print(f"ERRO: Ocorreu um erro no banco: {erro}")
-
-if __name__ == "__main__":
-    criar_tabela()
