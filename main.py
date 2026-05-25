@@ -1,5 +1,5 @@
-from controllers.controle import inserir_produtos
-#* Local de teste
+from views.tela import iniciar_janela_principal
+from config.init_gestor import criar_tabela
 
-def teste():
-    return 
+criar_tabela()
+iniciar_janela_principal()

@@ -7,16 +7,14 @@ def conectar():
 def inserir_nome_produto(nome_produto, preco, quantidade):
     with conectar() as conexao:
         cursor = conexao.cursor()
-
-        cursor.execute("INSERT INTO produtos (nome_nome_produto, preco, quantidade) VALUE (?, ?, ?)", (nome_produto, preco, quantidade, ))
+        cursor.execute("INSERT INTO produtos (nome_produto, preco, quantidade) VALUES (?, ?, ?)", (nome_produto, preco, quantidade, ))
         conexao.commit()
 
 
-def buscar_nome_produto(id_produto):
+def buscar_id_produto():
     with conectar() as conexao:
         cursor = conexao.cursor()
-
-        cursor.execute("SELECT * FROM produtos WHERE id = ?" (id_produto, ))
+        cursor.execute("SELECT * FROM produtos")
         produto_encontrado = cursor.fetchall()
 
         return produto_encontrado
@@ -25,7 +23,6 @@ def buscar_nome_produto(id_produto):
 def atualizar_preco(id_produto, novo_preco):
     with conectar() as conexao:
         cursor = conexao.cursor()
-
         cmd_sql = "UPDATE produtos SET preco = ?  WHERE id = ?"
         cursor.execute(cmd_sql, (novo_preco, id_produto))
         conexao.commit()
@@ -34,9 +31,6 @@ def atualizar_preco(id_produto, novo_preco):
 def deletar_produto(id_produto):
     with conectar() as conexao:
         cursor = conexao.cursor()
-
         cmd_sql = "DELETE FROM produtos WHERE id = ?"
-        cursor.execute(cmd_sql, (id_produto))
+        cursor.execute(cmd_sql, (id_produto, ))
         conexao.commit()
-
-        return

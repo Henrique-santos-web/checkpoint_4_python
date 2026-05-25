@@ -12,8 +12,8 @@ def criar_tabela():
                 CREATE TABLE IF NOT EXISTS produtos(
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     nome_produto TEXT NOT NULL,
-                    preco TEXT NOT NULL,
-                    quantidade TEXT NOT NULL         
+                    preco REAL NOT NULL,
+                    quantidade INTEGER NOT NULL         
                 )
             """)
 
