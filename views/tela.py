@@ -45,6 +45,8 @@ def vizualizar_produto():
         visualizar_estoque.insert("end", produtos)
 
     figura, ax = plt.subplots(figsize = (5, 4))
+    # figura = a "folha" onde o gráfico é desenhado
+    # ax = o "lápis" que desenha nela
     ax.pie(quantidade_produto, labels=nome_produto, autopct='%1.1f%%')
     # *quantidade_produto = os valores de cada fatia
     # *labels = os nomes de cada fatia
